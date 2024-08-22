@@ -10,7 +10,7 @@ fn main() {
     let mut starting_line = line
         .trim()
         .parse::<u16>()
-        .unwrap();
+        .expect("Cannot convert.");
 
     line = String::new();
     println!("Ending line (decimal)?");
@@ -20,7 +20,7 @@ fn main() {
     let ending_line = line
         .trim()
         .parse::<u16>()
-        .unwrap();
+        .expect("Cannot convert.");
 
     line = String::new();
     println!("Stars line interval (decimal)?");
@@ -30,7 +30,7 @@ fn main() {
     let line_interval = line
         .trim()
         .parse::<u16>()
-        .unwrap();
+        .expect("Cannot convert.");
         
     let mut speeds: Vec<u8> = Vec::new();
     let mut rng = rand::thread_rng();
