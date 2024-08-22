@@ -8,6 +8,7 @@ keywords = ["amiga", "starfield", "sprite"]
 categories = ["command-line-utilities", "graphics"]
 repository = "https://github.com/nicolasbauw/amiga-starfield-generator"
 readme = "README.md"
+license = "MIT"
 
 [dependencies]
 rand = "0.8.5"
