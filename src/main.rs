@@ -1,15 +1,15 @@
-//use std::io;
+use std::io;
 use rand::Rng;
 
 fn main() {
-    /*let mut line = String::new();
+    let mut line = String::new();
     println!("Starting line (decimal)?");
     io::stdin().read_line(&mut line)
         .expect("Read line failed.");
 
-    let starting_line = line
+    let mut starting_line = line
         .trim()
-        .parse::<u8>()
+        .parse::<u16>()
         .unwrap();
 
     line = String::new();
@@ -19,7 +19,7 @@ fn main() {
 
     let ending_line = line
         .trim()
-        .parse::<u8>()
+        .parse::<u16>()
         .unwrap();
 
     line = String::new();
@@ -29,13 +29,9 @@ fn main() {
 
     let line_interval = line
         .trim()
-        .parse::<u8>()
-        .unwrap();*/
+        .parse::<u16>()
+        .unwrap();
         
-
-    let mut starting_line: u16 = 0x95;
-    let ending_line = 0xFE;
-    let line_interval = 4;
     let mut speeds: Vec<u8> = Vec::new();
     let mut rng = rand::thread_rng();
 
