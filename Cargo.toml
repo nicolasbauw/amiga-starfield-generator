@@ -1,6 +1,6 @@
 [package]
 name = "amiga-starfield-generator"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 authors = ["Nicolas BAUW <nbauw@hotmail.com>"]
 description = "Amiga starfield generator"
@@ -12,4 +12,3 @@ license = "MIT"
 
 [dependencies]
 rand = "0.8.5"
-text_io = "0.1.12"
