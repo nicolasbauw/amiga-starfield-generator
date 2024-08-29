@@ -3,7 +3,7 @@ use rand::Rng;
 
 fn main() {
     let mut line = String::new();
-    println!("Starting line (decimal)?");
+    println!("Starting line (decimal - min = 44)?");
     io::stdin().read_line(&mut line)
         .expect("Read line failed.");
 
@@ -13,7 +13,7 @@ fn main() {
         .expect("Cannot convert.");
 
     line = String::new();
-    println!("Ending line (decimal)?");
+    println!("Ending line (decimal - max = 298)?");
     io::stdin().read_line(&mut line)
         .expect("Read line failed.");
 
@@ -41,7 +41,7 @@ fn main() {
     let color = rng.gen_range(0..3);
 
     generate_line(starting_line, horizontal_pos, color, &mut speeds);
-    starting_line+=vertical_add+2;
+    starting_line = starting_line.wrapping_add(vertical_add+2);
     }
     println!("0x0000,0x0000");
     println!("\nSpeeds table:\n{:?}", speeds);
