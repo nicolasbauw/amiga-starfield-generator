@@ -9,7 +9,7 @@ fn main() {
 
     let mut starting_line = line
         .trim()
-        .parse::<u16>()
+        .parse::<u8>()
         .expect("Cannot convert.");
 
     line = String::new();
@@ -19,7 +19,7 @@ fn main() {
 
     let ending_line = line
         .trim()
-        .parse::<u16>()
+        .parse::<u8>()
         .expect("Cannot convert.");
 
     line = String::new();
@@ -29,7 +29,7 @@ fn main() {
 
     let line_interval = line
         .trim()
-        .parse::<u16>()
+        .parse::<u8>()
         .expect("Cannot convert.");
         
     let mut speeds: Vec<u8> = Vec::new();
@@ -48,7 +48,7 @@ fn main() {
     println!("{} stars generated.", speeds.len());
 }
 
-fn generate_line(starting_line: u16, horizontal_pos: u16, color: u16, speeds: &mut Vec<u8>) {
+fn generate_line(starting_line: u8, horizontal_pos: u8, color: u8, speeds: &mut Vec<u8>) {
     print!("{:#04X}", starting_line);
     print!("{:02X}", horizontal_pos);
     println!(",{:#02X}00,", starting_line+1);
@@ -61,8 +61,9 @@ fn generate_line(starting_line: u16, horizontal_pos: u16, color: u16, speeds: &m
 }
 
 // Sprite positions
-// horizontal left = $40 - right  = $DF
-// vertical   top  = $2C - bottom = $FE
+// horizontal           $40 -> $DF
+// vertical             $2C -> $FE
+// vertical (after $FF) $00 -> $2C
 //
 // Sprite data word
 // vstart, hstart/2, vstop
