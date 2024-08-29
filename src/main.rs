@@ -67,3 +67,7 @@ fn generate_line(starting_line: u16, horizontal_pos: u16, color: u16, speeds: &m
 // Sprite data word
 // vstart, hstart/2, vstop
 // color data
+//
+// Sample control words after vpos $FF
+// 0x0341,0x0406,
+//             |---> %00000110
