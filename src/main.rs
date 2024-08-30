@@ -1,61 +1,65 @@
-use std::io;
 use rand::Rng;
+use std::io;
 
 fn main() {
     let mut line = String::new();
     println!("Starting line (decimal - min = 44)?");
-    io::stdin().read_line(&mut line)
-        .expect("Read line failed.");
+    io::stdin().read_line(&mut line).expect("Read line failed.");
 
-    let mut starting_line = line
-        .trim()
-        .parse::<u8>()
-        .expect("Cannot convert.");
+    let mut starting_line = line.trim().parse::<u16>().expect("Cannot convert.");
 
     line = String::new();
     println!("Ending line (decimal - max = 298)?");
-    io::stdin().read_line(&mut line)
-        .expect("Read line failed.");
+    io::stdin().read_line(&mut line).expect("Read line failed.");
 
-    let ending_line = line
-        .trim()
-        .parse::<u8>()
-        .expect("Cannot convert.");
+    let ending_line = line.trim().parse::<u16>().expect("Cannot convert.");
 
     line = String::new();
     println!("Stars line interval (decimal)?");
-    io::stdin().read_line(&mut line)
-        .expect("Read line failed.");
+    io::stdin().read_line(&mut line).expect("Read line failed.");
 
-    let line_interval = line
-        .trim()
-        .parse::<u8>()
-        .expect("Cannot convert.");
-        
+    let line_interval = line.trim().parse::<u16>().expect("Cannot convert.");
+
     let mut speeds: Vec<u8> = Vec::new();
     let mut rng = rand::thread_rng();
 
-    while starting_line<ending_line{
-    let vertical_add = rng.gen_range(0..line_interval);
-    let horizontal_pos = rng.gen_range(0x00..0xDF);
-    let color = rng.gen_range(0..3);
+    while starting_line < ending_line {
+        let vertical_add = rng.gen_range(0..line_interval);
+        let horizontal_pos = rng.gen_range(0x00..0xDF);
+        let color = rng.gen_range(0..3);
 
-    generate_line(starting_line, horizontal_pos, color, &mut speeds);
-    starting_line = starting_line.wrapping_add(vertical_add+2);
+        generate_line(starting_line, horizontal_pos, color, &mut speeds);
+        starting_line = starting_line.wrapping_add(vertical_add + 2);
     }
     println!("0x0000,0x0000");
     println!("\nSpeeds table:\n{:?}", speeds);
     println!("{} stars generated.", speeds.len());
 }
 
-fn generate_line(starting_line: u8, horizontal_pos: u8, color: u8, speeds: &mut Vec<u8>) {
-    print!("{:#04X}", starting_line);
-    print!("{:02X}", horizontal_pos);
-    println!(",{:#02X}00,", starting_line+1);
+fn generate_line(mut starting_line: u16, horizontal_pos: u16, color: u8, speeds: &mut Vec<u8>) {
+    if starting_line < 0xFF {
+        print!("{:#04X}", starting_line);
+        print!("{:02X}", horizontal_pos);
+        println!(",{:#02X}00,", starting_line + 1);
+    } else {
+        starting_line -= 0xFF;
+        print!("{:#04X}", starting_line);
+        print!("{:02X}", horizontal_pos);
+        println!(",{:#02X}06,", starting_line + 1);
+    }
     match color {
-        0 => { println!("0x8000,0x0000,"); speeds.push(1) },
-        1 => { println!("0x0000,0x8000,"); speeds.push(2) },
-        2 => { println!("0x8000,0x8000,"); speeds.push(3) },
+        0 => {
+            println!("0x8000,0x0000,");
+            speeds.push(1)
+        }
+        1 => {
+            println!("0x0000,0x8000,");
+            speeds.push(2)
+        }
+        2 => {
+            println!("0x8000,0x8000,");
+            speeds.push(3)
+        }
         _ => {}
     }
 }
