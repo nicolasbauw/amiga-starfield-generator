@@ -40,12 +40,12 @@ fn generate_line(mut starting_line: u16, horizontal_pos: u16, color: u8, speeds:
     if starting_line < 0xFF {
         print!("{:#04X}", starting_line);
         print!("{:02X}", horizontal_pos);
-        println!(",{:#02X}00,", starting_line + 1);
+        println!(",{:#04X}00,", starting_line + 1);
     } else {
         starting_line -= 0xFF;
         print!("{:#04X}", starting_line);
         print!("{:02X}", horizontal_pos);
-        println!(",{:#02X}06,", starting_line + 1);
+        println!(",{:#04X}06,", starting_line + 1);
     }
     match color {
         0 => {
