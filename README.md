@@ -5,9 +5,9 @@ It creates random stars on three "depths" (far, med, near) and a table with corr
 You can choose the start and end lines, and the line interval between two stars:
 
 ```
-Starting line (decimal)?
+Starting line (decimal - min = 44)?
 149
-Ending line (decimal)?
+Ending line (decimal - max = 298)?
 254
 Stars line interval (decimal)?
 1
@@ -30,6 +30,7 @@ Speeds table:
 [1, 3, 2, 1, 3, 1, 1, 1, 3, 3, 2, 2, 1, 1, 2, 3, 2, 1, 1, 1, 2, 2, 1, 2, 3, 1, 1, 3, 2, 2, 2, 2, 1, 3, 1, 1, 3, 3, 2, 3, 2, 2, 2, 1, 1, 1, 3, 1, 2, 1, 1, 2, 3]
 53 stars generated.
 ```
+It also handles vertical positions after $FF.  
 
 To install:
 ```
